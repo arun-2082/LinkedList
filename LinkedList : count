@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+/* creat your structure as node*/
+struct Node{
+    int data;
+    struct Node *next;
+};
+
+
+void append ( struct Node **head, int val ) {
+    struct Node *newNode=(struct Node*)malloc(sizeof(struct Node));
+    newNode->data=val;
+    newNode->next != NULL;
+    if(*head == NULL)
+    *head=newNode;
+    else
+    {
+        struct Node *lastNode = *head;
+        while(lastNode->next != NULL)
+        {
+            lastNode=lastNode->next;
+        }
+        lastNode->next=newNode;
+    }
+    
+	//Fill in the code here
+}
+
+void display ( struct Node *head ) {
+    int count=0;
+    printf("The elements in the linked list are ");
+    while(head)
+    {
+        printf("%d->",head->data);
+        head=head->next;
+        count++;
+    }
+    printf("NULL");
+    printf("\nThe number of elements in the linked list is %d",count);
+
+}
+
+void main()
+{
+    struct Node *head= NULL;
+    int n,i,val;
+    printf("Enter the number of nodes:\n");
+    scanf("%d",&n);
+    for(i=0;i<n;i++){
+        scanf("%d",&val);
+        append(&head,val);
+    }
+    display(head);
+}
