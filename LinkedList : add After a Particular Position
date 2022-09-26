@@ -1,0 +1,75 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct Node
+{
+int data;
+struct Node*next;
+};
+void append(struct Node**head,int data);
+void addafter(struct  Node*head,int loc,int num);
+void display(struct Node*head);
+int main(){
+struct Node*head=NULL;
+int n,pos,num;
+printf("Enter the number of nodes:\n");
+scanf("%d",&n);
+int data;
+for(int i=0;i<n;i++){
+scanf("%d",&data);
+append(&head,data);
+}
+printf("Enter the position after which you want to add another node\n");
+scanf("%d",&pos);
+printf("Enter the value\n");
+scanf("%d",&num);
+printf("The elements in the linked list are");
+display (head);
+addafter (head,pos,num);
+return 0;
+}
+void append(struct Node**head,int data)
+{
+struct Node*new_node=(struct Node*)malloc(sizeof(struct  Node));
+struct Node*temp=*head;
+new_node->data=data;
+new_node->next=NULL;
+if(*head==NULL)
+{
+    *head=new_node;
+}
+else
+{
+    while(temp->next!=0)
+    {
+    temp=temp->next;
+    }
+    temp->next=new_node;
+}
+}
+void display(struct Node*head)
+{
+    struct Node*temp=head;
+    while(temp!=0)
+    {
+    printf(" %d",temp->data);
+    temp=temp->next;
+    }
+}
+void addafter(struct Node*head,int pos,int num)
+{
+struct Node*new_node=(struct Node*)malloc(sizeof(struct Node));
+struct Node*temp=head;
+new_node->data=num;
+    for(int i=0;i<pos;i++)
+    {
+
+    temp=temp->next;
+
+    }
+new_node->next=temp->next;
+temp->next=new_node;
+printf("\nThe elements in the linked list after inserting at a specific position are");
+display (head);
+}
